@@ -37,6 +37,7 @@ ETTH1:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: True
     
 
 ETTH2:
@@ -46,7 +47,7 @@ ETTH2:
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
+  batch_size: 128
   weight_decay: 0
   lr: 0.0001
   milestones: []
@@ -60,7 +61,7 @@ ETTH2:
     label_len : 48 
     pred_len : 336 
     n_heads : 8
-    e_layers : 2 
+    e_layers : 3
     d_layers : 1 
     factor : 3 
     enc_in : 7 
@@ -69,7 +70,7 @@ ETTH2:
     des : 'Exp' 
     d_model : 16
     d_ff : 128
-    dropout : 0.1
+    dropout : 0.3
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -78,6 +79,7 @@ ETTH2:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: False
     
 
 ETTM1:
@@ -119,6 +121,7 @@ ETTM1:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: True
     
     
 ETTM2:
@@ -160,6 +163,7 @@ ETTM2:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: True
 
 
 RATE:
@@ -171,7 +175,7 @@ RATE:
   num_marks: 4
   batch_size: 128
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0001
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -201,6 +205,7 @@ RATE:
     compress : 1
     patch_len : 16
     stride : 8
+    norm_layer: False
     
     
 WEATHER:
@@ -242,6 +247,7 @@ WEATHER:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: True
 
     
 ECL:
@@ -281,8 +287,9 @@ ECL:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
+    norm_layer: True
 
 
 SOLAR:
@@ -324,6 +331,7 @@ SOLAR:
     compress : 1
     patch_len : 2
     stride : 1
+    norm_layer: True
 
 
 TRAFFIC:
@@ -365,4 +373,5 @@ TRAFFIC:
     compress : 1
     patch_len : 16
     stride : 8
+    norm_layer: True
     

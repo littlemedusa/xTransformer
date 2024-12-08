@@ -51,7 +51,7 @@ class t_combined(nn.Module):
                     activation=configs.activation
                 ) for l in range(configs.e_layers)
             ],
-            norm_layer=torch.nn.LayerNorm(configs.d_model)
+            norm_layer=torch.nn.LayerNorm(configs.d_model) if configs.norm_layer else None
         )
         
         # Decoder
@@ -127,14 +127,18 @@ class Encoder(nn.Module):
 
 
 class EncoderLayer(nn.Module):
-    def __init__(self, attention, d_model, d_ff=None, dropout=0.1, activation="relu"):
+    def __init__(self, attention, d_model, d_ff=None, dropout=0.1, activation="gelu", BatchNorm=True):
         super(EncoderLayer, self).__init__()
         d_ff = d_ff or 4 * d_model
         self.attention = attention
         self.conv1 = nn.Conv1d(in_channels=d_model, out_channels=d_ff, kernel_size=1)
         self.conv2 = nn.Conv1d(in_channels=d_ff, out_channels=d_model, kernel_size=1)
-        self.norm1 = nn.LayerNorm(d_model)
-        self.norm2 = nn.LayerNorm(d_model)
+        if BatchNorm:
+            self.norm1 = nn.Sequential(Transpose(1,2), nn.BatchNorm1d(d_model), Transpose(1,2))
+            self.norm2 = nn.Sequential(Transpose(1,2), nn.BatchNorm1d(d_model), Transpose(1,2))
+        else:
+            self.norm1 = nn.LayerNorm(d_model)
+            self.norm2 = nn.LayerNorm(d_model)
         self.dropout = nn.Dropout(dropout)
         self.activation = F.relu if activation == "relu" else F.gelu
 
@@ -222,7 +226,16 @@ class FullAttention(nn.Module):
         else:
             return V.contiguous(), None
     
-    
+
+class Transpose(nn.Module):
+    def __init__(self, *dims, contiguous=False): 
+        super().__init__()
+        self.dims, self.contiguous = dims, contiguous
+    def forward(self, x):
+        if self.contiguous: return x.transpose(*self.dims).contiguous()
+        else: return x.transpose(*self.dims)
+
+
 class DataEmbedding_inverted(nn.Module):
     def __init__(self, c_in, d_model, dropout=0.1):
         super(DataEmbedding_inverted, self).__init__()
@@ -245,9 +258,9 @@ class Positional_encoding(nn.Module):
         self.W_P = nn.Linear(patch_len, d_model)
         self.dropout = nn.Dropout(dropout)
         W_pos = torch.empty((patch_num, d_model))
-        self.W_pos = nn.Parameter(W_pos, requires_grad=True)  
-        nn.init.uniform_(self.W_pos, -0.02, 0.02)
-    
+        nn.init.uniform_(W_pos, -0.02, 0.02)
+        self.W_pos = nn.Parameter(W_pos, requires_grad=True) 
+        
     def forward(self, x):
         x = self.W_P(x)
         x = self.dropout(x + self.W_pos)  
