@@ -37,6 +37,7 @@ ETTH1:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: False
     norm_layer: True
     
 
@@ -79,6 +80,7 @@ ETTH2:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: True
     norm_layer: False
     
 
@@ -121,6 +123,7 @@ ETTM1:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: False
     norm_layer: True
     
     
@@ -163,6 +166,7 @@ ETTM2:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: False
     norm_layer: True
 
 
@@ -205,6 +209,7 @@ RATE:
     compress : 1
     patch_len : 16
     stride : 8
+    batch_norm: True
     norm_layer: False
     
     
@@ -247,6 +252,7 @@ WEATHER:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: False
     norm_layer: True
 
     
@@ -289,6 +295,7 @@ ECL:
     compress : 1
     patch_len : 16
     stride : 8
+    batch_norm: False
     norm_layer: True
 
 
@@ -331,6 +338,7 @@ SOLAR:
     compress : 1
     patch_len : 2
     stride : 1
+    batch_norm: False
     norm_layer: True
 
 
@@ -373,5 +381,6 @@ TRAFFIC:
     compress : 1
     patch_len : 16
     stride : 8
+    batch_norm: False
     norm_layer: True
     
