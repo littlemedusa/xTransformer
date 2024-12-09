@@ -1,5 +1,4 @@
-$$
-\begin{tabular}{|c|c|cc|cc|cc|cc|cc|}
+$$\begin{tabular}{|c|c|cc|cc|cc|cc|cc|}
 \hline 
  \multicolumn{2}{|c|}{Methods} & \multicolumn{2}{c|}{t\_combined\_t} & \multicolumn{2}{c|}{PatchTST\_21} & \multicolumn{2}{c|}{PatchTST} & \multicolumn{2}{c|}{t\_combined\_n} & \multicolumn{2}{c|}{iTransformer} \\
 \hline 
@@ -34,5 +33,4 @@ $$
  \multirow{2}{*}{Traffic} & 96 & 0.422 & 0.282 & 0.550 & 0.379 & 0.544 & 0.359 & 0.471 & 0.344 & 0.395 & 0.268 \\
   & 336 & 0.424 & 0.278 & 0.491 & 0.326 & 0.551 & 0.358 & 0.500 & 0.361 & 0.433 & 0.283 \\
  \hline
-\end{tabular}
-$$
+\end{tabular}$$
