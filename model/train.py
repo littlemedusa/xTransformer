@@ -41,7 +41,8 @@ from model.t_variant.t_variant_3 import t_variant_3
 from model.t_variant.t_variant_4 import t_variant_4
 from model.t_variant.t_variant_5 import t_variant_5
 from model.DLinear.DLinear import DLinear
-from model.t_combined.t_combined import t_combined
+from model.xTransformer.xTransformer import xTransformer
+from model.xTransformer_v1.xTransformer_v1 import xTransformer_v1
 
 # ! X shape: (B, T, N, C)
 
@@ -388,7 +389,8 @@ if __name__ == "__main__":
             'DLinear': DLinear,
             't_variant': globals()["t_variant_%s"%args.add_tag] if args.add_tag is not None else None,
             # 't_variant': t_variant_2
-            't_combined': t_combined
+            'xTransformer': xTransformer, 
+            'xTransformer_v1': xTransformer_v1, 
         }
     if model_name == 'STAEformer':
         model = model_dict[model_name](**cfg["model_args"])
