@@ -35,8 +35,8 @@ ETTH1:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
     
@@ -78,8 +78,8 @@ ETTH2:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: True
     norm_layer: False
     
@@ -121,8 +121,8 @@ ETTM1:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
     
@@ -164,8 +164,8 @@ ETTM2:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
 
@@ -250,8 +250,8 @@ WEATHER:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
 
@@ -336,8 +336,8 @@ SOLAR:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 2
-    stride : 1
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
 
@@ -370,8 +370,8 @@ TRAFFIC:
     dec_in : 862 
     c_out : 862
     des : 'Exp' 
-    d_model : 32
-    d_ff : 128
+    d_model : 128
+    d_ff : 256
     dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
@@ -379,8 +379,8 @@ TRAFFIC:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 16
-    stride : 8
+    patch_len : 24
+    stride : 12
     batch_norm: False
     norm_layer: True
     

@@ -27,6 +27,8 @@ class xTransformer_v1(nn.Module):
         self.stride = configs.stride
         self.patch_num = int((self.seq_len - self.patch_len)/self.stride + 2)
         self.padding_patch_layer = nn.ReplicationPad1d((0, self.stride)) 
+
+        self.device = configs.device
         
         # Embedding
         self.enc_embedding = Positional_encoding(self.patch_len, self.patch_num, configs.d_model, configs.dropout)

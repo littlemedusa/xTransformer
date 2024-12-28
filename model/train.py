@@ -2,6 +2,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 import torch
 import torch.nn as nn
 import datetime
@@ -26,22 +27,24 @@ from lib.utils import (
 )
 from lib.metrics import MSE_RMSE_MAE_MAPE
 from lib.data_prepare import get_dataloaders_from_index_data
-from model.STAEformer.STAEformer import STAEformer
-from model.FEDformer.FEDformer import FEDformer
-from model.PatchTST.PatchTST import PatchTST
-from model.PatchTST.PatchTST_norm import PatchTST_norm
-from model.PatchTST.PatchTST_std import PatchTST_std
-from model.PatchTST.PatchTST_test import PatchTST_test
-from model.PatchTST.PatchTST_variant import PatchTST_variant
-from model.iTransformer.iTransformer import iTransformer
-from model.iTransformer.iTransformer_STnorm import iTransformer_test
-from model.t_variant.t_variant_1 import t_variant_1
-from model.t_variant.t_variant_2 import t_variant_2
-from model.t_variant.t_variant_3 import t_variant_3
-from model.t_variant.t_variant_4 import t_variant_4
-from model.t_variant.t_variant_5 import t_variant_5
-from model.DLinear.DLinear import DLinear
+# from model.STAEformer.STAEformer import STAEformer
+# from model.FEDformer.FEDformer import FEDformer
+# from model.PatchTST.PatchTST import PatchTST
+# from model.PatchTST.PatchTST_norm import PatchTST_norm
+# from model.PatchTST.PatchTST_std import PatchTST_std
+# from model.PatchTST.PatchTST_test import PatchTST_test
+# from model.PatchTST.PatchTST_variant import PatchTST_variant
+# from model.iTransformer.iTransformer import iTransformer
+# from model.iTransformer.iTransformer_STnorm import iTransformer_test
+# from model.t_variant.t_variant_1 import t_variant_1
+# from model.t_variant.t_variant_2 import t_variant_2
+# from model.t_variant.t_variant_3 import t_variant_3
+# from model.t_variant.t_variant_4 import t_variant_4
+# from model.t_variant.t_variant_5 import t_variant_5
+# from model.DLinear.DLinear import DLinear
 from model.xTransformer.xTransformer import xTransformer
+from model.xTransformer_v0.xTransformer_v0 import xTransformer_v0
+from model.xTransformer_v0_1.xTransformer_v0_1 import xTransformer_v0_1
 from model.xTransformer_v1.xTransformer_v1 import xTransformer_v1
 
 # ! X shape: (B, T, N, C)
@@ -126,7 +129,7 @@ def train_one_epoch(
     model, trainset_loader, optimizer, scheduler, criterion, clip_grad, log=None
 ):
     global cfg, global_iter_count, global_target_length
-
+    
     model.train()
     batch_loss_list = []
     if args.addition:
@@ -185,7 +188,7 @@ def train(
     save=None,
 ):
     model = model.to(DEVICE)
-
+    
     wait = 0
     min_val_loss = np.inf
 
@@ -315,9 +318,9 @@ if __name__ == "__main__":
 
     GPU_ID = args.gpu_num
     print("GPU_ID: ", GPU_ID)
-    os.environ["CUDA_VISIBLE_DEVICES"] = f"{GPU_ID}"
+    # os.environ["CUDA_VISIBLE_DEVICES"] = f"{GPU_ID}"
     DEVICE = torch.device("cuda:%s"%(GPU_ID) if torch.cuda.is_available() else "cpu")
-
+    
     dataset = args.dataset
     dataset = dataset.upper()
     data_path = f"../data/{dataset}"
@@ -377,19 +380,23 @@ if __name__ == "__main__":
         cfg["model_args"]["axis"] = model_select_args["axis"]
         cfg["model_args"]["compress"] = model_select_args["compress"]
 
+    cfg["model_args"]["device"] = DEVICE
+
     # -------------------------------- load model -------------------------------- #
     
     model_dict = {
-            'FEDformer': FEDformer,
-            'STAEformer': STAEformer,
+            # 'FEDformer': FEDformer,
+            # 'STAEformer': STAEformer,
             # 'PatchTST': globals()["PatchTST_%s"%args.add_tag] if args.add_tag is not None else PatchTST,
-            'PatchTST': PatchTST_variant,
+            # 'PatchTST': PatchTST_variant,
             # 'iTransformer': iTransformer_test if args.add_tag == "test" else iTransformer,
-            'iTransformer': iTransformer,
-            'DLinear': DLinear,
-            't_variant': globals()["t_variant_%s"%args.add_tag] if args.add_tag is not None else None,
+            # 'iTransformer': iTransformer,
+            # 'DLinear': DLinear,
+            # 't_variant': globals()["t_variant_%s"%args.add_tag] if args.add_tag is not None else None,
             # 't_variant': t_variant_2
             'xTransformer': xTransformer, 
+            'xTransformer_v0': xTransformer_v0,
+            'xTransformer_v0_1': xTransformer_v0_1, 
             'xTransformer_v1': xTransformer_v1, 
         }
     if model_name == 'STAEformer':
@@ -440,7 +447,7 @@ if __name__ == "__main__":
     )
     print_log(
         summary(
-            model.to(DEVICE),
+            model,
             [
                 [cfg["batch_size"],
                 args.seq_len,
@@ -454,10 +461,8 @@ if __name__ == "__main__":
                 [cfg["batch_size"],
                 args.pred_len,
                  cfg["num_marks"]],
-                
             ],
             verbose=0,  # avoid print twice
-            device=DEVICE,
         ),
         log=log,
     )

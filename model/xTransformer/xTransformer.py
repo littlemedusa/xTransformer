@@ -11,10 +11,10 @@ from torch import Tensor
 from typing import Callable, Optional
 
 
-class t_combined(nn.Module):
+class xTransformer(nn.Module):
 
     def __init__(self, configs):
-        super(t_combined, self).__init__()
+        super(xTransformer, self).__init__()
         self.seq_len = configs.seq_len
         self.label_len = configs.label_len
         self.pred_len = configs.pred_len
