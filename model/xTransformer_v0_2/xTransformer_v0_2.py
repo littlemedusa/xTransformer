@@ -27,46 +27,48 @@ class xTransformer_v0_2(nn.Module):
         self.stride = configs.stride
         self.patch_num = int((self.seq_len - self.patch_len)/self.stride + 2)
         self.padding_patch_layer = nn.ReplicationPad1d((0, self.stride)) 
+        self.d_model = configs.d_model
         
         # Embedding
-        self.enc_embedding = Positional_encoding(self.patch_len, self.patch_num, configs.d_model, configs.dropout)
         self.padding_patch = Padding_patch(self.num_nodes, self.patch_num, self.patch_len, self.stride)
-
+        self.enc_embedding = Total_Embedding(self.num_nodes, self.patch_num, self.patch_len, self.d_model, configs.dropout)
+        self.d_model = self.d_model
+        
         # Encoder
         self.encoder_t = Encoder(
             [
                 EncoderLayer(
                     AttentionLayer(
                         FullAttention(False, configs.factor, attention_dropout=configs.dropout,
-                                      output_attention=configs.output_attention), configs.d_model, configs.n_heads),
-                    configs.d_model,
+                                      output_attention=configs.output_attention), self.d_model, configs.n_heads),
+                    self.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,
                     activation=configs.activation,
                     batchnorm=configs.batch_norm
                 ) for l in range(configs.e_layers)
             ],
-            norm_layer=torch.nn.LayerNorm(configs.d_model) if configs.norm_layer else None
+            norm_layer=torch.nn.LayerNorm(self.d_model) if configs.norm_layer else None
         )
         
-        self.encoder_n = Encoder(
-            [
-                EncoderLayer(
-                    AttentionLayer(
-                        FullAttention(False, configs.factor, attention_dropout=configs.dropout,
-                                      output_attention=configs.output_attention), configs.d_model, configs.n_heads),
-                    configs.d_model,
-                    configs.d_ff,
-                    dropout=configs.dropout,
-                    activation=configs.activation,
-                    batchnorm=configs.batch_norm
-                ) for l in range(configs.e_layers)
-            ],
-            norm_layer=torch.nn.LayerNorm(configs.d_model) if configs.norm_layer else None
-        )
+        # self.encoder_n = Encoder(
+        #     [
+        #         EncoderLayer(
+        #             AttentionLayer(
+        #                 FullAttention(False, configs.factor, attention_dropout=configs.dropout,
+        #                               output_attention=configs.output_attention), self.d_model, configs.n_heads),
+        #             self.d_model,
+        #             configs.d_ff,
+        #             dropout=configs.dropout,
+        #             activation=configs.activation,
+        #             batchnorm=configs.batch_norm
+        #         ) for l in range(configs.e_layers)
+        #     ],
+        #     norm_layer=torch.nn.LayerNorm(self.d_model) if configs.norm_layer else None
+        # )
         
         # Decoder
-        self.dec = nn.Linear(self.patch_num*configs.d_model, self.pred_len)
+        self.dec = nn.Linear(self.patch_num*self.d_model, self.pred_len)
         self.flatten_dec = Flatten_dec(self.batch_size, self.num_nodes)
 
     def forward(self, x_batch, x_batch_mark, y_batch_zero, y_batch_mark):
@@ -301,6 +303,30 @@ class Flatten_dec(nn.Module):
         x = torch.reshape(x, (x.shape[0], x.shape[1], x.shape[-2]*x.shape[-1]))
         return x
 
+
+class Total_Embedding(nn.Module):
+    def __init__(self, num_nodes, patch_num, patch_len, d_model, dropout=0.3):
+        super(Total_Embedding, self).__init__()
+        self.linear_proj = nn.Linear(patch_len, d_model)
+        self.patch_embedding = nn.init.xavier_uniform_(
+                nn.Parameter(torch.empty(patch_num, d_model))
+            )
+        self.node_embedding = nn.init.xavier_uniform_(
+                nn.Parameter(torch.empty(num_nodes, d_model))
+            )
+        self.adaptive_embedding = nn.init.xavier_uniform_(
+                nn.Parameter(torch.empty(num_nodes, patch_num, d_model))
+            )
+    
+    def forward(self, x):
+        batch, num_nodes, patch_num, _ = x.shape
+        x_linear = self.linear_proj(x)
+        # x_patch = self.patch_embedding.unsqueeze(0).unsqueeze(1).repeat(batch, num_nodes, 1, 1)
+        # x_node = self.node_embedding.unsqueeze(0).unsqueeze(2).repeat(batch, 1, patch_num, 1)
+        # x_ada = self.adaptive_embedding.unsqueeze(0).repeat(batch, 1, 1, 1)
+        # x = torch.cat([x_linear, x_patch, x_node, x_ada], -1)
+        total = x_linear
+        return total
 
 
 
