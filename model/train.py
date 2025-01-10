@@ -48,6 +48,8 @@ from model.xTransformer_v0_1.xTransformer_v0_1 import xTransformer_v0_1
 from model.xTransformer_v0_2.xTransformer_v0_2 import xTransformer_v0_2
 from model.xTransformer_v0_3.xTransformer_v0_3 import xTransformer_v0_3
 from model.xTransformer_v0_4.xTransformer_v0_4 import xTransformer_v0_4
+from model.xTransv0_ablation_trans_t.xTransv0_ablation_trans_t import xTransv0_ablation_trans_t
+from model.xTransv0_ablation_trans_n.xTransv0_ablation_trans_n import xTransv0_ablation_trans_n
 from model.xTransformer_v1.xTransformer_v1 import xTransformer_v1
 
 # ! X shape: (B, T, N, C)
@@ -403,6 +405,8 @@ if __name__ == "__main__":
             'xTransformer_v0_2': xTransformer_v0_2,
             'xTransformer_v0_3': xTransformer_v0_3,
             'xTransformer_v0_4': xTransformer_v0_4,
+            'xTransv0_ablation_trans_t': xTransv0_ablation_trans_t,
+            'xTransv0_ablation_trans_n': xTransv0_ablation_trans_n,
             'xTransformer_v1': xTransformer_v1, 
         }
     if model_name == 'STAEformer':
