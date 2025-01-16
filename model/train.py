@@ -51,6 +51,7 @@ from model.xTransformer_v0_4.xTransformer_v0_4 import xTransformer_v0_4
 from model.xTransv0_ablation_trans_t.xTransv0_ablation_trans_t import xTransv0_ablation_trans_t
 from model.xTransv0_ablation_trans_n.xTransv0_ablation_trans_n import xTransv0_ablation_trans_n
 from model.xTransformer_v1.xTransformer_v1 import xTransformer_v1
+from model.xTransv0_parallel.xTransv0_parallel import xTransv0_parallel
 
 # ! X shape: (B, T, N, C)
 
@@ -408,6 +409,7 @@ if __name__ == "__main__":
             'xTransv0_ablation_trans_t': xTransv0_ablation_trans_t,
             'xTransv0_ablation_trans_n': xTransv0_ablation_trans_n,
             'xTransformer_v1': xTransformer_v1, 
+            'xTransv0_parallel': xTransv0_parallel,
         }
     if model_name == 'STAEformer':
         model = model_dict[model_name](**cfg["model_args"])
