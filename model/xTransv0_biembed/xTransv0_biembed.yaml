@@ -379,8 +379,8 @@ TRAFFIC:
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 24
-    stride : 12
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
     
