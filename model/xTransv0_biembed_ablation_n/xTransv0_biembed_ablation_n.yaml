@@ -1,0 +1,395 @@
+ETTH1:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+    
+
+ETTH2:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 128
+  weight_decay: 0
+  lr: 0.0001
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 3
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.3
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: True
+    norm_layer: False
+    embedding_range: 0.02
+    
+
+ETTM1:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 4
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+    
+    
+ETTM2:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+
+
+RATE:
+  num_nodes: 8
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 128
+  weight_decay: 0
+  lr: 0.0001
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 8
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 8
+    dec_in : 8
+    c_out : 8
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: True
+    norm_layer: False
+    embedding_range: 0.02
+    
+    
+WEATHER:
+  num_nodes: 21
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 21
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 4
+    e_layers : 3 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 21
+    dec_in : 21
+    c_out : 21
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+
+    
+ECL:
+  num_nodes: 321
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 321
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 3 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 321
+    dec_in : 321 
+    c_out : 321 
+    des : 'Exp' 
+    d_model : 128
+    d_ff : 256
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+
+
+SOLAR:
+  num_nodes: 137
+  time_of_day: True
+  day_of_week: False
+  day_of_month: False
+  day_of_year: False
+  num_marks: 1
+  batch_size: 32
+  weight_decay: 0
+  lr: 0.0002
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 137
+    num_marks: 1
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 137
+    dec_in : 137
+    c_out : 21
+    des : 'Exp' 
+    d_model : 128
+    d_ff : 256 
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+
+
+TRAFFIC:
+  num_nodes: 862
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 16
+  weight_decay: 0
+  lr: 0.0001
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 862
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 8
+    e_layers : 4 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 862
+    dec_in : 862 
+    c_out : 862
+    des : 'Exp' 
+    d_model : 128
+    d_ff : 256
+    dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 24
+    stride : 12
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
+    
