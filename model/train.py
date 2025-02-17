@@ -499,7 +499,7 @@ if __name__ == "__main__":
         scheduler,
         criterion,
         clip_grad=cfg.get("clip_grad"),
-        max_epochs=cfg.get("max_epochs", 20),
+        max_epochs=cfg.get("max_epochs", 10),
         early_stop=cfg.get("early_stop", 10),
         verbose=1,
         log=log,

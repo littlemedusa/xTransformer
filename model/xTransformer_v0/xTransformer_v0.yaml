@@ -5,9 +5,9 @@ ETTH1:
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
+  batch_size: 128
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -29,6 +29,7 @@ ETTH1:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -50,7 +51,7 @@ ETTH2:
   num_marks: 4
   batch_size: 128
   weight_decay: 0
-  lr: 0.0001
+  lr: 0.0002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -72,6 +73,7 @@ ETTH2:
     d_model : 16
     d_ff : 128
     dropout : 0.3
+    embedding_dropout: 0.3
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -91,9 +93,9 @@ ETTM1:
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
+  batch_size: 128
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -115,6 +117,7 @@ ETTM1:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -134,9 +137,9 @@ ETTM2:
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
+  batch_size: 128
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -158,6 +161,7 @@ ETTM2:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -179,7 +183,7 @@ RATE:
   num_marks: 4
   batch_size: 128
   weight_decay: 0
-  lr: 0.0001
+  lr: 0.0002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -201,6 +205,7 @@ RATE:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -222,7 +227,7 @@ WEATHER:
   num_marks: 4
   batch_size: 32
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -244,6 +249,7 @@ WEATHER:
     d_model : 128
     d_ff : 256
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -265,7 +271,7 @@ ECL:
   num_marks: 4
   batch_size: 32
   weight_decay: 0
-  lr: 0.0005
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -287,6 +293,7 @@ ECL:
     d_model : 128
     d_ff : 256
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -308,7 +315,7 @@ SOLAR:
   num_marks: 1
   batch_size: 32
   weight_decay: 0
-  lr: 0.0005
+  lr: 0.0002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -330,6 +337,7 @@ SOLAR:
     d_model : 128
     d_ff : 256 
     dropout : 0.1
+    embedding_dropout: 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -351,7 +359,7 @@ TRAFFIC:
   num_marks: 4
   batch_size: 16
   weight_decay: 0
-  lr: 0.001
+  lr: 0.002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -370,17 +378,18 @@ TRAFFIC:
     dec_in : 862 
     c_out : 862
     des : 'Exp' 
-    d_model : 128
-    d_ff : 256
+    d_model : 32
+    d_ff : 128
     dropout : 0.1
+    embedding_dropout: 0.3
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 24
-    stride : 12
+    patch_len : 16
+    stride : 8
     batch_norm: False
     norm_layer: True
     

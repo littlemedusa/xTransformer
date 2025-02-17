@@ -5,95 +5,9 @@ ETTH1:
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
-  weight_decay: 0
-  lr: 0.0002
-  milestones: []
-  lr_decay_rate: 0.1
-  inverse: False
-  
-  model_args:  
-    num_nodes: 7
-    num_marks: 4
-    seq_len : 96 
-    label_len : 48 
-    pred_len : 336 
-    n_heads : 8
-    e_layers : 2 
-    d_layers : 1 
-    factor : 3 
-    enc_in : 7 
-    dec_in : 7 
-    c_out : 7 
-    des : 'Exp' 
-    d_model : 16
-    d_ff : 128
-    dropout : 0.1
-    embed : 'timeF'
-    activation : 'gelu'
-    output_attention : False
-    freq : 'h'
-    axis : 'n'
-    compress : 1
-    patch_len : 16
-    stride : 8
-    batch_norm: False
-    norm_layer: True
-    
-
-ETTH2:
-  num_nodes: 7
-  time_of_day: True
-  day_of_week: True
-  day_of_month: True
-  day_of_year: True
-  num_marks: 4
   batch_size: 128
   weight_decay: 0
-  lr: 0.0001
-  milestones: []
-  lr_decay_rate: 0.1
-  inverse: False
-  
-  model_args:  
-    num_nodes: 7
-    num_marks: 4
-    seq_len : 96 
-    label_len : 48 
-    pred_len : 336 
-    n_heads : 8
-    e_layers : 3
-    d_layers : 1 
-    factor : 3 
-    enc_in : 7 
-    dec_in : 7 
-    c_out : 7 
-    des : 'Exp' 
-    d_model : 16
-    d_ff : 128
-    dropout : 0.3
-    embed : 'timeF'
-    activation : 'gelu'
-    output_attention : False
-    freq : 'h'
-    axis : 'n'
-    compress : 1
-    patch_len : 16
-    stride : 8
-    batch_norm: True
-    norm_layer: False
-    
-
-ETTM1:
-  num_nodes: 7
-  time_of_day: True
-  day_of_week: True
-  day_of_month: True
-  day_of_year: True
-  num_marks: 4
-  batch_size: 32
-  weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -115,26 +29,28 @@ ETTM1:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
     freq : 'h'
     axis : 'n'
     compress : 1
-    patch_len : 16
-    stride : 8
+    patch_len : 8
+    stride : 1
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
     
-    
-ETTM2:
+
+ETTH2:
   num_nodes: 7
   time_of_day: True
   day_of_week: True
   day_of_month: True
   day_of_year: True
   num_marks: 4
-  batch_size: 32
+  batch_size: 128
   weight_decay: 0
   lr: 0.0002
   milestones: []
@@ -147,7 +63,52 @@ ETTM2:
     seq_len : 96 
     label_len : 48 
     pred_len : 336 
-    n_heads : 8
+    n_heads : 4
+    e_layers : 3
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.3
+    embedding_dropout : 0.3
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 8
+    stride : 1
+    batch_norm: True
+    norm_layer: False
+    embedding_range: 0.02
+    
+
+ETTM1:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 128
+  weight_decay: 0
+  lr: 0.0004
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 4
     e_layers : 2 
     d_layers : 1 
     factor : 3 
@@ -158,6 +119,7 @@ ETTM2:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -168,6 +130,52 @@ ETTM2:
     stride : 8
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
+    
+    
+ETTM2:
+  num_nodes: 7
+  time_of_day: True
+  day_of_week: True
+  day_of_month: True
+  day_of_year: True
+  num_marks: 4
+  batch_size: 128
+  weight_decay: 0
+  lr: 0.0004
+  milestones: []
+  lr_decay_rate: 0.1
+  inverse: False
+  
+  model_args:  
+    num_nodes: 7
+    num_marks: 4
+    seq_len : 96 
+    label_len : 48 
+    pred_len : 336 
+    n_heads : 4
+    e_layers : 2 
+    d_layers : 1 
+    factor : 3 
+    enc_in : 7 
+    dec_in : 7 
+    c_out : 7 
+    des : 'Exp' 
+    d_model : 16
+    d_ff : 128
+    dropout : 0.1
+    embedding_dropout : 0.1
+    embed : 'timeF'
+    activation : 'gelu'
+    output_attention : False
+    freq : 'h'
+    axis : 'n'
+    compress : 1
+    patch_len : 16
+    stride : 8
+    batch_norm: False
+    norm_layer: True
+    embedding_range: 0.02
 
 
 RATE:
@@ -179,7 +187,7 @@ RATE:
   num_marks: 4
   batch_size: 128
   weight_decay: 0
-  lr: 0.0001
+  lr: 0.0002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -201,6 +209,7 @@ RATE:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -211,6 +220,7 @@ RATE:
     stride : 8
     batch_norm: True
     norm_layer: False
+    embedding_range: 0.02
     
     
 WEATHER:
@@ -222,7 +232,7 @@ WEATHER:
   num_marks: 4
   batch_size: 32
   weight_decay: 0
-  lr: 0.0002
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -244,6 +254,7 @@ WEATHER:
     d_model : 16
     d_ff : 128
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -254,6 +265,7 @@ WEATHER:
     stride : 8
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
 
     
 ECL:
@@ -265,7 +277,7 @@ ECL:
   num_marks: 4
   batch_size: 32
   weight_decay: 0
-  lr: 0.0005
+  lr: 0.0004
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -287,6 +299,7 @@ ECL:
     d_model : 128
     d_ff : 256
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -297,6 +310,7 @@ ECL:
     stride : 8
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
 
 
 SOLAR:
@@ -308,7 +322,7 @@ SOLAR:
   num_marks: 1
   batch_size: 32
   weight_decay: 0
-  lr: 0.0005
+  lr: 0.0002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -330,6 +344,7 @@ SOLAR:
     d_model : 128
     d_ff : 256 
     dropout : 0.1
+    embedding_dropout : 0.1
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -340,6 +355,7 @@ SOLAR:
     stride : 8
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
 
 
 TRAFFIC:
@@ -351,7 +367,7 @@ TRAFFIC:
   num_marks: 4
   batch_size: 16
   weight_decay: 0
-  lr: 0.001
+  lr: 0.002
   milestones: []
   lr_decay_rate: 0.1
   inverse: False
@@ -373,6 +389,7 @@ TRAFFIC:
     d_model : 128
     d_ff : 256
     dropout : 0.1
+    embedding_dropout : 0.3
     embed : 'timeF'
     activation : 'gelu'
     output_attention : False
@@ -383,4 +400,5 @@ TRAFFIC:
     stride : 8
     batch_norm: False
     norm_layer: True
+    embedding_range: 0.02
     
